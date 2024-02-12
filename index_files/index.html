@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="keywords" content="Vaultune, Vautune, Voltune, Vaultoon, Valtune, Vawltoon, Vultoon, Valtun, Vaultun, Valtone, Voltun, Vawltoone, Valtoon, Vaultunee, Vawltune, Valtuun, Valtewn, Vaultoone, Vawltoon, Vau1tune, VauItune, V4ultune, V@ultune, Vaulchune, Vaul2ne, Valtun3, V@ul_tune, Vooltune, Vaoltune, Faltune, Baultune, Vault Une">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300&family=Quicksand:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="apple-touch-icon" href="assets/images/logo.svg">
+    <link rel="icon" href="assets/images/logo.svg">
+    <meta property="og:image" content="assets/images/logo.svg">
+    <meta property="og:title" content="Vaultune">
+    <meta property="og:description" content="Vaultune is a website where you can buy and download Paid or Free music packs for cheap prices!">
+    <meta property="og:url" content="https://vaultune.bytepioneer.repl.co">
+    <meta property="og:type" content="website">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <title>Free Music Packs</title>
+    <script src="assets/js/index.js"></script>
+</head>
+<body>
+  <nav>
+      <a style="color: rgb(175,175,175);">Home</a>
+      <a href="/feedback">Feedback</a>
+      <a style="font-size: 25px;" href="javascript:void(0);" class="icon" onclick="toggleNavbar()">
+          &#9776;
+      </a>
+  </nav>
+
+    <script>
+        function toggleNavbar() {
+            var x = document.getElementsByTagName("nav")[0];
+            if (x.className === "") {
+                x.className = "responsive";
+              document.querySelector(".icon").innerHTML = "&times;";
+            } else {
+                x.className = "";
+              document.querySelector(".icon").innerHTML = "&#9776;";
+            }
+        }
+    </script>
+    <h1 style="text-align: center; font-size: 40px;">Vaultune</h1>
+    <p><br></p>
+    <h3 style="text-align: center;">LIMITED TIME: PACKS ARE ALL FREE!</h3>
+  <br>
+  <h2>Options</h2>
+  <center><label for="toggleCheckbox">Show Off-Sale Packs: <input type="checkbox" id="toggleCheckbox" checked=true onchange="toggleOffSalePacks()">
+  <label for="toggleCheckbox" class="toggle-label">&#10003;</label></label></center>
+  <br>
+  <center>
+      <label for="toggleAlbumPacks">Filter Album Packs: 
+          <input type="checkbox" id="toggleAlbumPacks" checked=true onchange="toggleAlbumPacks()">
+        <label id="toggleLabel" for="toggleAlbumPacks" class="toggle-label">&#10005;</label>
+      </label>
+  </center>
+</div>
+    <br>
+  <style>
+      .flex-container {
+          display: flex;
+          justify-content: center;
+          gap: 10px;
+          flex-wrap: wrap;
+      }
+
+      .search-bar-container, .genre-filter-container {
+          width: 100%;
+      }
+
+      @media (min-width: 600px) {
+          .search-bar-container, .genre-filter-container {
+              width: auto;
+          }
+      }
+  </style>
+
+  <div class="flex-container">
+      <div class="search-bar-container">
+          <center>
+              <input type="text" id="searchBar" oninput="searchPacks()" placeholder="Search by Pack Name">
+          </center>
+      </div>
+
+      <div class="genre-filter-container">
+          <center>
+              <div class="dropdown">
+                  <button class="dropdown-button">Search By Genre</button>
+                  <div class="dropdown-content" id="genreDropdown">
+                    <center>
+                      <a onclick="filterPacksByGenre('Dubstep')">Dubstep</a>
+                      <a onclick="filterPacksByGenre('Trap')">Trap</a>
+                      <a onclick="filterPacksByGenre('Hybrid Trap')">Hybrid Trap</a>
+                      <a onclick="filterPacksByGenre('200-Step')">200-Step</a>
+                      <a onclick="filterPacksByGenre('Artist')">Artist</a>
+                      <a onclick="resetGenreFilter()">Show All Genres</a>
+                    </center>
+                  </div>
+              </div>
+          </center>
+      </div>
+  </div>
+
+  <script>
+      function filterPacksByGenre(genre) {
+          var packs = document.getElementsByClassName("music-pack");
+          var dropdownButton = document.querySelector('.dropdown-button');
+
+          dropdownButton.innerHTML = `${genre}`;
+
+          for (var i = 0; i < packs.length; i++) {
+              var packGenre = packs[i].getElementsByClassName("genre")[0].innerHTML;
+
+              if (genre === packGenre || genre === 'Show All Genres') {
+                  packs[i].style.display = "";
+              } else {
+                  packs[i].style.display = "none";
+              }
+          }
+      }
+
+      function resetGenreFilter() {
+          var packs = document.getElementsByClassName("music-pack");
+          var dropdownButton = document.querySelector('.dropdown-button');
+
+          dropdownButton.innerHTML = 'Search By Genre';
+
+          for (var i = 0; i < packs.length; i++) {
+              packs[i].style.display = "";
+          }
+      }
+  </script>
+  <script>
+    function searchPacks() {
+      var input, filter, packs, pack, i, packName;
+      input = document.getElementById("searchBar");
+      filter = input.value.toUpperCase();
+      packs = document.getElementById("packs-display");
+      pack = packs.getElementsByClassName("music-pack");
+
+      for (i = 0; i < pack.length; i++) {
+        packName = pack[i].getElementsByClassName("pack-name")[0];
+        if (packName) {
+          if (packName.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            pack[i].style.display = "";
+          } else {
+            pack[i].style.display = "none";
+          }
+        }
+      }
+    }
+  </script>
+  <br>
+  <hr>
+  <br>
+    <!-- Pack 1 -->
+  <div id="packs-display">
+    <div class="music-pack" id="pack1">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">Dubstep</h3>
+            </div>
+            <img src="assets/images/DubstepPack1.jpeg" alt="Music Pack 1" class="album-cover">
+            <div class="loading" id="loadingaudioPack1"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack1', this)">&#9654;</button>
+                <audio id="audioPack1" src="assets/audio/SongPreviewDub1.wav"></audio>
+            </div>
+            <div class="pack-name">Owe</div>
+        </div>
+        <h2 onclick="redirect('/download/?pack=[Dubstep] Owe Pack')">FREE</h2>
+        <p>Music Pack 46 Loops</p>
+        <p>150 BPM</p>
+        <button onclick="redirect('/download/?pack=[Dubstep] Owe Pack&a=DubstepPack1')">Download</button>
+        <p></p>
+    </div>
+    <!-- Pack 2 -->
+    <div class="music-pack" id="pack2">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">Trap</h3>
+            </div>
+            <img src="assets/images/TrapPack1.jpeg" alt="Music Pack 2" class="album-cover">
+            <div class="loading" id="loadingaudioPack2"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack2', this)">&#9654;</button>
+                <audio id="audioPack2" src="assets/audio/SongPreviewTrap1.wav"></audio>
+            </div>
+            <div class="pack-name">Flex</div>
+        </div>
+      <h2 onclick="redirect('/download/?pack=[Trap] Flex Pack')">FREE</h2>
+      <p>Music Pack 46 Loops</p>
+      <p>148 BPM</p>
+      <button onclick="redirect('/download/?pack=[Trap] Flex Pack')">Download</button>
+      <p></p>
+    </div>
+    <!-- Pack 3 -->
+    <div class="music-pack" id="pack3">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">Hybrid Trap</h3>
+            </div>
+            <img src="assets/images/TellPackImage.jpeg" alt="Music Pack 3" class="album-cover">
+            <div class="loading" id="loadingaudioPack3"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack3', this)">&#9654;</button>
+                <audio id="audioPack3" src="assets/audio/TellPackPreview.wav"></audio>
+            </div>
+            <div class="pack-name">Tell</div>
+        </div>
+      <h2 onclick="redirect('/download/?pack=[Hybrid Trap] Tell Pack')">FREE</h2>
+      <p>Music Pack 45 Loops</p>
+      <p>150 BPM</p>
+      <button onclick="redirect('/download/?pack=[Hybrid Trap] Tell Pack')">Download</button>
+      <p></p>
+    </div>
+    <!-- Pack 4 -->
+    <div value="off-sale" class="music-pack" id="pack4">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">200-Step</h3>
+            </div>
+            <img src="assets/images/HyperPackImage.jpeg" alt="Music Pack 4" class="album-cover">
+            <div class="loading" id="loadingaudioPack4"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack4', this)">&#9654;</button>
+                <audio id="audioPack4" src="assets/audio/HyperPackPreview.wav"></audio>
+            </div>
+            <div class="pack-name">Hyper</div>
+        </div>
+      <h2>Off Sale</h2>
+      <p>This Pack Is Not Available</p>
+      <p></p>
+    </div>
+    <!-- Pack 5 -->
+    <div value="off-sale" class="music-pack" id="pack5">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">Trap</h3>
+            </div>
+            <img src="assets/images/JayPackImage.jpeg" alt="Music Pack 5" class="album-cover">
+            <div class="loading" id="loadingaudioPack5"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack5', this)">&#9654;</button>
+                <audio id="audioPack5" src="assets/audio/JayPackPreview.wav"></audio>
+            </div>
+            <div class="pack-name">Jay</div>
+        </div>
+      <h2>Off Sale</h2>
+      <p>This Pack Is Not Available</p>
+      <p></p>
+    </div>
+    <!-- Pack 6 -->
+    <div name="Kai" value="off-sale" class="music-pack" id="pack6">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">Artist</h3>
+            </div>
+            <img src="assets/images/KaiPackImage.jpeg" alt="Music Pack 6" class="album-cover">
+            <div class="loading" id="loadingaudioPack6"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack6', this)">&#9654;</button>
+                <audio id="audioPack6" src="assets/audio/KaiSummerPackPreview.wav"></audio>
+            </div>
+            <div class="pack-name">Summer</div>
+        </div>
+      <div style="font-size: 15px; margin-top: 5px; color: cyan; font-weight: bold; box-shadow: -3px 1px 3px white, 3px 1px 3px black; display: inline-block; text-shadow: 3px 0px 3px black; padding: 5px; border-radius: 20px;">This Pack Is Apart Of An Album, Kai</div>
+      <h2 style="color: #e0f7fa">Off Sale</h2>
+      <p>This Pack Is Not Available</p>
+      <p></p>
+    </div>
+    <!-- Pack 7 -->
+    <div name="Kai" value="off-sale" class="music-pack" id="pack7">
+        <div class="music-info">
+            <div class="pack-info">
+                <h3 class="genre">Artist</h3>
+            </div>
+            <img src="assets/images/KaiPackImage.jpeg" alt="Music Pack 7" class="album-cover">
+            <div class="loading" id="loadingaudioPack7"></div>
+            <div class="audio-controls">
+                <button class="play-pause" onclick="togglePlayPause('audioPack7', this)">&#9654;</button>
+                <audio id="audioPack7" src="assets/audio/KaiAdorePackPreview.wav"></audio>
+            </div>
+            <div class="pack-name">Adore</div>
+        </div>
+      <div style="font-size: 15px; margin-top: 5px; color: cyan; font-weight: bold; box-shadow: -3px 1px 3px white, 3px 1px 3px black; display: inline-block; text-shadow: 3px 0px 3px black; padding: 5px; border-radius: 20px;">This Pack Is Apart Of An Album, Kai</div>
+      <h2 style="color: #e0f7fa">Off Sale</h2>
+      <p>This Pack Is Not Available</p>
+      <p></p>
+    </div>
+    <!-- NOTE TO SELF: ADD MORE MUSIC PACKS -->
+    <script>
+      function bytepioneer(){
+        window.location.href = "https://bytepioneer.replit.app";
+      }
+    </script>
+  </div>
+    <hr>
+    <h4 style="text-align: center;">MORE PACKS COMING SOON!</h4>
+  <button id="bytepioneer" onclick="bytepioneer()">Solo Work By BytePioneer   <em><span style="font-size:10px;">And CoodyBoy.</span></em></button>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const checkbox = document.getElementById('toggleAlbumPacks');
+        checkbox.checked = false;
+        toggleAlbumPacks();
+    });
+  </script>
+</body>
+</html>
